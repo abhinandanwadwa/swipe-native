@@ -4,8 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './components/HomeScreen';
 import LoginPage from './components/LoginPage';
-import { HeaderBackground } from '@react-navigation/elements';
-
+// import { TransitionPresets } from '@react-navigation/native-stack'
+import { TransitionPresets, CardStyleInterpolators, TransitionSpecs } from '@react-navigation/stack';
 
 function LogoTitle() {
   return (
@@ -21,9 +21,14 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen options={{ title: '', headerStyle: {backgroundColor: 'black'} }} name="Home" component={HomeScreen} />
-            <Stack.Screen name="Login" component={LoginPage} />
+        <Stack.Navigator screenOptions={{
+          gestureEnabled: true,
+          gestureDirection: 'horizontal',
+          CardStyleInterpolators: CardStyleInterpolators.forHorizontalIOS
+        }} initialRouteName="Home">
+            <Stack.Screen options={{ title: '', headerStyle: {backgroundColor: 'black'}, animation: 'slide_from_right' }} name="Home" component={HomeScreen} />
+
+            <Stack.Screen options={{ animation: 'slide_from_right', headerStyle: { backgroundColor: 'black' }, gestureDirection: 'horizontal', title: '' }} name="Login" component={LoginPage} />
         </Stack.Navigator>
       </NavigationContainer>
   );

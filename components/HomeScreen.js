@@ -48,7 +48,7 @@ const HomeScreen = ({ navigation }) => {
                 onPressIn={onPressIn}
                 onPressOut={onPressOut}
             >
-            <Pressable style={({ pressed }) => [
+            <Pressable onPress={getStarted} style={({ pressed }) => [
                 {
                     display: 'flex',
                     width: 250,
